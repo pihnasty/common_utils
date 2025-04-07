@@ -45,3 +45,5 @@ python -m pip install --upgrade pip
 Reinstall pip: If the issue persists, you can reinstall pip by running:
 python -m ensurepip --upgrade
 
+-----------------------------------------
+
