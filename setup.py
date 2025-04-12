@@ -9,7 +9,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='common_utils',
-    version='1.2',
+    version='1.3',
     packages=find_packages(),
     url='http://example.com',
     license='MIT',
