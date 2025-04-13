@@ -2,11 +2,10 @@
 Visual dataset.
 """
 import logging
-import math
 
-import Graphics.LineCharts.LineChart as lineChart
-import Graphics.Q_Q_Charts.Q_Q_Chart as q_q_Chart
-import Graphics.Histograms.Hist as hist
+import Graph.Graphics.LineCharts.LineChart as lineChart
+import Graph.Graphics.Q_Q_Charts.Q_Q_Chart as q_q_Chart
+import Graph.Graphics.Histograms.Hist as hist
 import utils.FileUtil as file_util
 
 RESULT_DATA = 'resultData/'
@@ -184,32 +183,32 @@ def common_q_q(
         logging.warning("The plot name {} are not defined", plot_name)
         return
     q_q_Chart.q_q_plot(path + '/' + file_name_prefix
-                         , x_values
-                         , y_values
-                         , xlabel_name=plot["x_label_name"]
-                         , title=plot["y_label_name"]
-                         , _y_colors=plot["color_line_set"]
-                         , _alpha_main=plot["alpha_main"]
-                         , _alpha_grid=plot["alpha_grid"]
-                         , _color=plot["color"]
-                         , _dpi=experiment["plot_parameters"]["dpi"]
-                         , x_min=plot["x_min"]
-                         , x_max=plot["x_max"]
-                         , x_tick_main=plot["x_tick_main"]
-                         , x_tick_auxiliary=plot["x_tick_auxiliary"]
-                         , x_axis_order=plot["x_axis_order"]
-                         , y1_min=plot["y_min"]
-                         , y1_max=plot["y_max"]
-                         , y_tick_main=plot["y_tick_main"]
-                         , y_tick_auxiliary=plot["y_tick_auxiliary"]
-                         , _fontsize=plot["fontsize"]
-                         , _x_size_plot=plot["x_size_plot"]
-                         , _y_size_plot=plot["y_size_plot"]
-                         , _plot_line_width=plot["plot_line_width"]
-                         , _grid_line_width=plot["grid_line_width"]
-                         , _adjust_left=plot["border_adjustment"]["left"]
-                         , _adjust_right=plot["border_adjustment"]["right"]
-                         , _adjust_top=plot["border_adjustment"]["top"]
-                         , _adjust_bottom=plot["border_adjustment"]["bottom"]
-                         )
+                       , x_values
+                       , y_values
+                       , xlabel_name=plot["x_label_name"]
+                       , title=plot["y_label_name"]
+                       , _y_colors=plot["color_line_set"]
+                       , _alpha_main=plot["alpha_main"]
+                       , _alpha_grid=plot["alpha_grid"]
+                       , _color=plot["color"]
+                       , _dpi=experiment["plot_parameters"]["dpi"]
+                       , x_min=plot["x_min"]
+                       , x_max=plot["x_max"]
+                       , x_tick_main=plot["x_tick_main"]
+                       , x_tick_auxiliary=plot["x_tick_auxiliary"]
+                       , x_axis_order=plot["x_axis_order"]
+                       , y1_min=plot["y_min"]
+                       , y1_max=plot["y_max"]
+                       , y_tick_main=plot["y_tick_main"]
+                       , y_tick_auxiliary=plot["y_tick_auxiliary"]
+                       , _fontsize=plot["fontsize"]
+                       , _x_size_plot=plot["x_size_plot"]
+                       , _y_size_plot=plot["y_size_plot"]
+                       , _plot_line_width=plot["plot_line_width"]
+                       , _grid_line_width=plot["grid_line_width"]
+                       , _adjust_left=plot["border_adjustment"]["left"]
+                       , _adjust_right=plot["border_adjustment"]["right"]
+                       , _adjust_top=plot["border_adjustment"]["top"]
+                       , _adjust_bottom=plot["border_adjustment"]["bottom"]
+                       )
 

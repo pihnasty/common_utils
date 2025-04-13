@@ -105,7 +105,7 @@ def q_q_plot(file_name
     # sm.qqplot(ys_values[1], line='45')
 
     pp = sm.ProbPlot(ys_values[0], fit=True)
-    qq = pp.qqplot(marker='.', markerfacecolor=_y_colors[1], markeredgecolor=_y_colors[1], alpha=0.3)
+    qq = pp.qqplot(marker='.', markerfacecolor=_y_colors[str(i)], markeredgecolor=_y_colors[str(i)], alpha=0.3)
     sm.qqline(qq.axes[0], line='45', fmt='k--')
 
 

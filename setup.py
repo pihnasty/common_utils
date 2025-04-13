@@ -11,7 +11,7 @@ setup(
     name='common_utils',
     version='1.3',
     packages=find_packages(),
-    url='http://example.com',
+    url='https://github.com/pihnasty/common_utils.git',
     license='MIT',
     author='Oleh Pihnastyi',
     author_email='pihnastyi@gmail.com',

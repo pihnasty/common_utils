@@ -2,10 +2,10 @@ from os import path
 
 from copy import deepcopy
 
-import show
-from common_utils.Graph.constants import Constants
-from common_utils.Graph.utils.csv.csv_reader import read_csv
-from common_utils.Graph.utils.json.json_reader import read_json
+from Graph import show
+from Graph.constants import Constants
+from Graph.utils.csv.csv_reader import read_csv
+from Graph.utils.json.json_reader import read_json
 
 
 class DataProcessing:
@@ -60,3 +60,5 @@ class DataProcessing:
             show.common_line(json_data, path, plot_values, file_name, plot_name)
         if plot_type == "hist":
             show.common_hist(json_data, path, plot_values, file_name, plot_name)
+        if plot_type == "q_q":
+            show.common_q_q(json_data, path, plot_values, file_name, plot_name)
