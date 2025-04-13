@@ -6,7 +6,7 @@ import copy
 from typing import Dict, Callable
 
 from common_utils.dim_less.dimensionless_type import DimensionlessType
-from common_utils.flow_constants import TIME, FLOW, STD, DIMENSIONLESS_TYPE, \
+from constants.flow_constants import TIME, FLOW, STD, DIMENSIONLESS_TYPE, \
     CHARACTERISTIC_FLOW_VALUE, CHARACTERISTIC_TIME_VALUE
 
 

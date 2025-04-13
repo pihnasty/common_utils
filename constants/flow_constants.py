@@ -1,0 +1,15 @@
+APPROXIMATE = "approximate"
+APPROXIMATE_TYPE = "approximate_type"
+NUMBER_OF_INTERVALS = "number_of_intervals"
+NUMBER_OF_HARMONICS = "number_of_harmonics"
+STD = "std"
+
+DIMENSIONLESS = "dimensionless"
+DIMLESS_FLOW = "dimless_flow"
+TAU = "tau"
+DIMENSIONLESS_TYPE = "dimensionless_type"
+CHARACTERISTIC_FLOW_VALUE = "characteristic_flow_value"
+CHARACTERISTIC_TIME_VALUE = "characteristic_time_value"
+
+FLOW = "flow"
+TIME = "time"

@@ -1,6 +1,6 @@
 import copy
 
-from common_utils.flow_constants import FLOW, TIME
+from constants.flow_constants import FLOW, TIME
 from common_utils.approximate_model.approximate_type import ApproximateType
 from common_utils.approximate_model.SpectrumWithMoreRealizationApproximate import \
     SpectrumWithMoreRealizationApproximate

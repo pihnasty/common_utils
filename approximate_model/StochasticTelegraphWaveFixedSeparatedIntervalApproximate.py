@@ -2,7 +2,7 @@ import copy
 
 import pandas as pd
 
-from common_utils.flow_constants import FLOW, TIME
+from constants.flow_constants import FLOW, TIME
 
 
 class StochasticTelegraphWaveFixedSeparatedIntervalApproximate:
