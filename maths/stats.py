@@ -4,6 +4,8 @@ for normal and uniform distributions. Useful for probabilistic modeling
 and statistical analysis.
 """
 import numpy as np
+import pandas as pd
+
 
 def normal_distribution(value, mean, std):
     """
@@ -37,3 +39,38 @@ def uniform_distribution(value, mean, min_value):
     if mean - delta <= value <= mean + delta:
         result = 1.0 / (2.0 * delta)
     return result
+
+
+def calculate_probability(values, intervals, y_name="y", x_name="x"):
+    delta, generated_distribution_density =  calculate_density(values, intervals, y_name, x_name,)
+    probability = initialization_function_y_from_x(intervals, y_name, x_name)
+    summa = 0.0
+    for k in range(intervals):
+        summa += generated_distribution_density[y_name][k] * delta
+        probability[x_name][k] = generated_distribution_density[x_name][k]
+        probability[y_name][k] = summa
+    return probability
+
+
+def calculate_density(values, intervals, y_name, x_name,):
+    max_tau = values.max() * 1.001
+    min_tau = values.min() * 0.999
+    delta = (max_tau - min_tau) / intervals
+    line = sorted(values)
+    generated_distribution_density = initialization_function_y_from_x(intervals, y_name, x_name)
+    tau = min_tau
+    for k in range(intervals):
+        for i in range(len(line)):
+            if tau < line[i] <= tau + delta:
+                generated_distribution_density[y_name][k] += 1.0 / (delta * len(line))
+        tau = tau + delta
+        generated_distribution_density[x_name][k] = tau
+    return delta, generated_distribution_density
+
+
+def initialization_function_y_from_x(intervals, y_name="y", x_name="x"):
+    function = pd.DataFrame()
+    function[x_name] = [0.0] * intervals
+    function[y_name] = [0.0] * intervals
+    return function
+

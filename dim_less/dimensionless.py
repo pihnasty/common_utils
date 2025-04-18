@@ -5,7 +5,7 @@ into dimensionless form using various standardization methods.
 import copy
 from typing import Dict, Callable
 
-from common_utils.dim_less.dimensionless_type import DimensionlessType
+from dim_less.dimensionless_type import DimensionlessType
 from constants.flow_constants import TIME, FLOW, STD, DIMENSIONLESS_TYPE, \
     CHARACTERISTIC_FLOW_VALUE, CHARACTERISTIC_TIME_VALUE
 
@@ -73,7 +73,7 @@ class Dimensionless:
 
         :param min_time: The min value of the dimensionless time.
         :param max_time: The max value of the dimensionless time
-        :return: dimension less time for the flow.
+        :return: dimensionless time for the flow.
         """
         dim_less_time = (self.dim[TIME] - self.dim_time_min) / (self.dim_time_max - self.dim_time_min)
         return dim_less_time * (max_time + 1) + min_time

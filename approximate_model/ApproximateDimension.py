@@ -1,8 +1,18 @@
+"""
+This module contains the `ApproximateDimension` class, which is used to
+approximate dimension flows using various models such as Stochastic
+Telegraph Wave, Spectrum with More Realization, and others. It includes
+methods for error approximation, tau sequence creation, and other calculations
+related to flow approximation.
+
+The available models and their approximations are based on the configuration
+passed during initialization.
+"""
 import copy
 
-from constants.flow_constants import FLOW, TIME
+from constants.flow_constants import FLOW, TIME, APPROXIMATE_TYPE, NUMBER_OF_INTERVALS
 from common_utils.approximate_model.approximate_type import ApproximateType
-from common_utils.approximate_model.SpectrumWithMoreRealizationApproximate import \
+from common_utils.approximate_model.spectrum_approximation import \
     SpectrumWithMoreRealizationApproximate
 from common_utils.approximate_model.StochasticTelegraphWaveFixedSeparatedIntervalApproximate import \
     StochasticTelegraphWaveFixedSeparatedIntervalApproximate
@@ -10,11 +20,12 @@ from common_utils.approximate_model.StochasticTelegraphWaveFixedSeparatedInterva
 
 class ApproximateDimension:
 
-    def __init__(self, dim, approximate_type, number_of_interval=None, number_of_harmonics=None):
+    def __init__(self, dim,  approximate_config: dict = None):
         self.dim = dim
         self.dim_flow_mean = dim[FLOW].mean()
         self.dim_flow_std = dim[FLOW].std()
-
+        approximate_type =  ApproximateType[approximate_config.get(APPROXIMATE_TYPE)]
+        number_of_interval = approximate_config.get(NUMBER_OF_INTERVALS)
         if approximate_type == ApproximateType.STOCHASTIC_TELEGRAPH_WAVE:
             self.approximate_dim, self.approximate_dim_mean, self.approximate_dim_std\
                 = self.approximate_stochastic_telegraph_wave()
@@ -23,15 +34,18 @@ class ApproximateDimension:
                 = StochasticTelegraphWaveFixedSeparatedIntervalApproximate(dim, number_of_interval).get_param()
         elif approximate_type == ApproximateType.SPECTRUM_WITH_MORE_REALIZATION:
             self.approximate_dim, self.approximate_dim_mean, self.approximate_dim_std \
-                = SpectrumWithMoreRealizationApproximate(dim, number_of_interval, number_of_harmonics).get_param()
+                = SpectrumWithMoreRealizationApproximate(dim, approximate_config).get_param()
             self.mean_approximate_dim \
-                = SpectrumWithMoreRealizationApproximate(dim, number_of_interval, number_of_harmonics).get_mean_approximate_dim()
+                = SpectrumWithMoreRealizationApproximate(dim, approximate_config).get_mean_approximate_dim()
             self.transposed_matrix_cos, self.transposed_matrix_sin  \
-                = SpectrumWithMoreRealizationApproximate(dim, number_of_interval, number_of_harmonics).get_transposed_matrix()
+                = SpectrumWithMoreRealizationApproximate(dim, approximate_config).get_transposed_matrix()
+            self.cos_harmonic_values, self.sin_harmonic_values \
+                = SpectrumWithMoreRealizationApproximate(dim, approximate_config).get_cos_and_sin_harmonic_values()
         elif approximate_type == ApproximateType.NONE:
             self.approximate_dim, self.approximate_dim_mean, self.approximate_dim_std= self.approximate_none()
 
-        self.error_approximate_dim, self.error_approximate_dim_mean, self.error_approximate_dim_std = self.error_approximate()
+        self.error_approximate_dim, self.error_approximate_dim_mean, self.error_approximate_dim_std\
+            = self.error_approximate()
         self.tau_sequence = self.create_tau_sequence_for_discrete_flow()
 
     def approximate_stochastic_telegraph_wave(self):
@@ -104,6 +118,9 @@ class ApproximateDimension:
 
     def get_transposed_matrix(self) -> object:
         return self.transposed_matrix_cos, self.transposed_matrix_sin
+
+    def get_cos_and_sin_harmonic_values(self) -> object:
+        return self.cos_harmonic_values, self.sin_harmonic_values
 
     def get_mean_approximate_dim(self) -> object:
         return self.mean_approximate_dim
